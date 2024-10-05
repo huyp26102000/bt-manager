@@ -1,0 +1,13 @@
+{
+  "name": "bt-manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pham Huy <76714933+huyp26102000@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-nvidia-smi": "^1.0.0"
+  },
+  "scripts": {
+    "start": "npx nodemon app.js"
+  }
+}
