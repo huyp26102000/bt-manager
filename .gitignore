@@ -69,3 +69,4 @@ yarn.lock
 
 metagraph/main_env
 metagraph/.env
+config.json
