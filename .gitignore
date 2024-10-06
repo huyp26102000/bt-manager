@@ -66,3 +66,6 @@ yarn.lock
 
 # TernJS port file
 .tern-port
+
+metagraph/main_env
+metagraph/.env
