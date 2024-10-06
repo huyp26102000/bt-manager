@@ -1,0 +1,9 @@
+{
+  "coldkey": [],
+  "machine": [
+    {
+      "url": "",
+      "num_gpu": 1
+    }
+  ]
+}
