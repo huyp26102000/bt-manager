@@ -53,25 +53,25 @@ app.get("/gpus/info", async (req, res) => {
       });
     });
     const fetchInfoFromEndpoints = async () => {
-        const results = await Promise.all(
-            endpointPort.map(async (epPort) => {
-                try {
-                    const response = await fetch(`http://localhost:${epPort}/info`);
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch from port ${epPort}`);
-                    }
-                    return await response.json();
-                } catch (error) {
-                    console.error(`Error fetching from port ${epPort}:`, error);
-                    return null;
-                }
-            })
-        );
-        return results.filter((result) => result !== null);
+      const results = await Promise.all(
+        endpointPort.map(async (epPort) => {
+          try {
+            const response = await fetch(`http://localhost:${epPort}/info`);
+            if (!response.ok) {
+              throw new Error(`Failed to fetch from port ${epPort}`);
+            }
+            return await response.json();
+          } catch (error) {
+            console.error(`Error fetching from port ${epPort}:`, error);
+            return null;
+          }
+        })
+      );
+      return results.filter((result) => result !== null);
     };
 
     const endpointData = await fetchInfoFromEndpoints();
-    console.log(endpointData)
+    console.log(endpointData);
 
     return res.status(200).send(gpus);
   } catch (error) {
