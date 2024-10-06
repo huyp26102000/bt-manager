@@ -70,10 +70,12 @@ app.get("/gpus/info", async (req, res) => {
       return results.filter((result) => result !== null);
     };
 
-    const endpointData = await fetchInfoFromEndpoints();
-    console.log(endpointData);
+    const endpoints = await fetchInfoFromEndpoints();
 
-    return res.status(200).send(gpus);
+    return res.status(200).send({
+      gpus,
+      endpoints,
+    });
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
