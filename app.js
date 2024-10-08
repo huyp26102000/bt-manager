@@ -2,11 +2,12 @@ const config = require("./config.json");
 const cron = require("node-cron");
 const axios = require("axios");
 require("dotenv").config();
-
+const config = require("./config.json");
 const fetchMetagraph = async () => {
   try {
-    const resp = await axios.get(`${process.env.METAGRAPH_URL}/metagraph`);
-    console.log(resp);
+    // const resp = await axios.get(`${process.env.METAGRAPH_URL}/metagraph`);
+    // const metagraph = resp?.data;
+    // const uids = metagraph?.
   } catch (error) {
     console.log(error);
   }
