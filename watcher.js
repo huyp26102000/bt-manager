@@ -73,7 +73,7 @@ function monitorLogsAndRestart() {
             // If error count exceeds threshold, initiate a 3-minute wait before restarting
             if (errorCount > errorThreshold) {
               console.log(
-                `${proc} has ${errorCount} blacklisted errors. Waiting 3 minutes before restarting ${restartInstance1}...`
+                `${proc} has ${errorCount} blacklisted errors.`
               );
               sendTelegramMessage();
             } else {
