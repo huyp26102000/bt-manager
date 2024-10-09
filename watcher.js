@@ -34,7 +34,7 @@ const sendTelegramMessage = async () => {
   });
 };
 
-function monitorLogsAndRestart(miners) {
+function monitorLogsAndRestart() {
   let errorCount = 0;
   let logLineCount = 0;
 
@@ -92,7 +92,7 @@ const runLogChecks = async () => {
     return;
   }
   console.log("Starting new log check cycle...");
-  monitorLogsAndRestart(listMiner);
+  monitorLogsAndRestart();
 };
 
 // Start the interval to check logs every minute
