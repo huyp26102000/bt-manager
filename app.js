@@ -46,7 +46,58 @@ const fetchMetagraph = async () => {
     console.log(error);
   }
 };
-cron.schedule("*/10 * * * *", () => {
+const fetchRegPrice = async () => {
+  try {
+    const resp = await axios.get(
+      "https://taomarketcap.com/api/subnets/23/sidebar/v2",
+      {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9",
+        },
+        referrer: "https://taomarketcap.com/subnets/23/registration",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        withCredentials: false, // Equivalent to `credentials: "omit"`
+      }
+    );
+    const taomkc = resp.data;
+    console.log(taomkc);
+    await axios({
+      baseURL: `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}`,
+      url: "/sendMessage",
+      method: "post",
+      data: {
+        chat_id: process.env.TELEGRAM_GROUP_ID,
+        message_thread_id: process.env.TELEGRAM_THREAD_ID,
+        text: `TaoMarketCap
+${taomkc.registrationsThisInterval}/3 Slots
+Fee: ${taomkc.burn}
+${
+  +taomkc.burn <= +process.env.MAX_REG_PRICE &&
+  +taomkc.registrationsThisInterval == 3
+    ? process.env.TELEGRAM_TAG
+    : ""
+}
+`,
+        // Remain block: ${taomkc.blocksUntilNextEpoch}
+        parse_mode: "html",
+        disable_web_page_preview: true,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "cache-control": "no-cache",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+cron.schedule("*/5 * * * *", () => {
   console.log("Fetching endpoint");
   fetchMetagraph();
+});
+cron.schedule("*/10 * * * *", () => {
+  console.log("Fetching endpoint");
+  fetchRegPrice();
 });
