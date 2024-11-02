@@ -72,13 +72,13 @@ const fetchRegPrice = async () => {
         text: `TaoMarketCap
 ${taomkc.registrationsThisInterval}/3 Slots
 Fee: ${taomkc.burn}
-${
-  +taomkc.burn <= +process.env.MAX_REG_PRICE &&
-  +taomkc.registrationsThisInterval == 3
-    ? process.env.TELEGRAM_TAG
-    : ""
-}
 `,
+        // ${
+        //   +taomkc.burn <= +process.env.MAX_REG_PRICE &&
+        //   +taomkc.registrationsThisInterval == 3
+        //     ? process.env.TELEGRAM_TAG
+        //     : ""
+        // }
         // Remain block: ${taomkc.blocksUntilNextEpoch}
         parse_mode: "html",
         disable_web_page_preview: true,
@@ -93,11 +93,13 @@ ${
     console.log(error);
   }
 };
-cron.schedule("*/5 * * * *", () => {
-  console.log("Fetching endpoint");
-  fetchMetagraph();
-});
-cron.schedule("*/10 * * * *", () => {
-  console.log("Fetching endpoint");
-  fetchRegPrice();
-});
+// cron.schedule("*/5 * * * *", () => {
+//   console.log("Fetching endpoint");
+//   fetchMetagraph();
+// });
+// cron.schedule("*/10 * * * *", () => {
+//   console.log("Fetching endpoint");
+//   fetchRegPrice();
+// });
+
+fetchRegPrice();
