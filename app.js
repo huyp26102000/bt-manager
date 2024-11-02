@@ -93,13 +93,11 @@ Fee: ${taomkc.burn}
     console.log(error);
   }
 };
-// cron.schedule("*/5 * * * *", () => {
-//   console.log("Fetching endpoint");
-//   fetchMetagraph();
-// });
-// cron.schedule("*/10 * * * *", () => {
-//   console.log("Fetching endpoint");
-//   fetchRegPrice();
-// });
-
-fetchRegPrice();
+cron.schedule("*/5 * * * *", () => {
+  console.log("Fetching endpoint");
+  fetchMetagraph();
+});
+cron.schedule("*/10 * * * *", () => {
+  console.log("Fetching endpoint");
+  fetchRegPrice();
+});
