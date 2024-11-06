@@ -45,7 +45,7 @@ const fetchMetagraph = async () => {
 ${e
   .map((j, index) => {
     return `http://${j}/info ${listModel[sindex][index]} ${
-      listModel[index] == null ? process.env.TELEGRAM_TAG : ""
+      listModel[sindex][index] == null ? process.env.TELEGRAM_TAG : ""
     }\n`;
   })
   .join("")}`
