@@ -15,7 +15,7 @@ const fetchMetagraph = async () => {
             try {
               console.log(e);
               const response = await axios.get(`http://${e}/info`, {
-                timeout: 1000,
+                timeout: 10000,
               });
               const model = response?.data?.model_name;
               stackData.push(model);
